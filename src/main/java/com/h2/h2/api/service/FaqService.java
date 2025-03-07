@@ -7,6 +7,8 @@ import java.util.List;
 public interface FaqService {
     List<FaqModel> listados();
 
+    List<FaqModel> listadosA();
+
     FaqModel crear(FaqModel faqModel);
 
     FaqModel update(FaqModel faqModel);

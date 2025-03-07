@@ -27,18 +27,14 @@ public class FaqController {
         }
     }
 
-    @GetMapping("prueba")
-    public String prueba() {
-        try {
-            testConnection();
-        } catch (SQLException e) {
-            return "Error de conexión: " + e.getMessage();
-        }
-        return "Ok, se ha recibido tu solicitud";
-    }
     @GetMapping("GetAll")
     public List<FaqModel> listar() {
         return productService.listados();
+    }
+
+    @GetMapping("GetAllActive")
+    public List<FaqModel> listarA() {
+        return productService.listadosA();
     }
 
     @PostMapping("Create")

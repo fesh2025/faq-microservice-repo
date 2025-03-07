@@ -17,8 +17,8 @@ public class FaqServiceImpl implements FaqService {
     private FaqRepository faqRepository;
 
     @Override
-    public List<FaqModel> listados() {
-        return faqRepository.findByStatus("A");
+    public List<FaqModel> listados() {        
+        return faqRepository.findAll();
     }
 
     @Override
@@ -45,6 +45,7 @@ public class FaqServiceImpl implements FaqService {
             if (faqModel.getUpdateUser() == null) {
                 faqModel.setUpdateUser("USER");
             }
+            faqModel.setStatus("A");
             return faqRepository.save(faqModel);
         } else {
             throw new EntityNotFoundException("Unidad Operativa con id " + faqModel.getIdfaq() + " no encontrada.");
@@ -56,6 +57,11 @@ public class FaqServiceImpl implements FaqService {
         FaqModel unidadbusca = faqRepository.findById(id).get();
         unidadbusca.setStatus("I");
         return faqRepository.save(unidadbusca);
+    }
+
+    @Override
+    public List<FaqModel> listadosA() {
+        return faqRepository.findByStatus("A");
     }
 
 }
